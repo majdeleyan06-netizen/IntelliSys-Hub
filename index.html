@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntelliSys Hub</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Geometric Tech Background Grid -->
+  <div class="geometric-bg">
+    <div class="bg-dots"></div>
+    <div class="bg-grid-lines"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <i class="fa-solid fa-laptop-code logo-icon"></i>
+          <span class="logo-text">IntelliSys <span class="logo-subtext">Hub</span></span>
+        </div>
+        <button class="toggle-sidebar-btn" id="toggleSidebarBtn" aria-label="إغلاق/فتح القائمة الجانبية">
+          <i class="fa-solid fa-chevron-left toggle-icon"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="home">
+          <i class="fa-solid fa-house nav-icon"></i>
+          <span class="nav-text">الصفحة الرئيسية</span>
+        </button>
+        <button class="nav-item" data-view="dashboard">
+          <i class="fa-solid fa-graduation-cap nav-icon"></i>
+          <span class="nav-text">الخطة الدراسية</span>
+        </button>
+        <button class="nav-item" data-view="explorer">
+          <i class="fa-solid fa-folder-open nav-icon"></i>
+          <span class="nav-text">مستكشف المواد</span>
+        </button>
+        <button class="nav-item" data-view="contacts">
+          <i class="fa-solid fa-building-columns nav-icon"></i>
+          <span class="nav-text">الخدمات الجامعية</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer-links">
+        <span class="sidebar-divider-title">اخرى</span>
+        <a href="https://t.me/moodle2026_bot" target="_blank" class="social-link tg-bot">
+          <i class="fa-brands fa-telegram social-icon"></i>
+          <div class="social-info">
+            <span class="social-title">مودل بوت (Moodle Bot)</span>
+            <span class="social-desc">إشعارات المودل </span>
+          </div>
+        </a>
+        <a href="https://chat.whatsapp.com/DtxefMEDRSt6yMq0y5g4JY" target="_blank" class="social-link wa-group">
+          <i class="fa-brands fa-whatsapp social-icon"></i>
+          <div class="social-info">
+            <span class="social-title">مجموعة الواتساب</span>
+            <span class="social-desc">مجموعة واتساب للتخصص </span>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-layout">
+      <!-- Top Branding Header -->
+      <header class="app-header" id="appHeader">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        
+        <!-- Back Button -->
+        <button class="back-btn" id="backBtn" style="display: none;" aria-label="رجوع للصفحة السابقة">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="header-branding">
+          <h1 class="brand-title">IntelliSys Hub</h1>
+          <p class="brand-subtitle">Intelligent Systems & Computer Engineering Hub</p>
+          <div class="brand-badge">
+            <i class="fa-solid fa-microchip badge-icon"></i>
+            <span>هندسة النظم الذكية والحاسوب - جامعة الأقصى</span>
+          </div>
+        </div>
+
+        <!-- Global Search Bar with Dropdown -->
+        <div class="header-search-wrapper">
+          <div class="search-box-container">
+            <input type="text" id="globalSearchInput" class="global-search-input" placeholder="ابحث عن مساق ..." autocomplete="off">
+            <button class="clear-search-global-btn" id="clearGlobalSearchBtn" style="display: none;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="search-results-dropdown" id="searchResultsDropdown" style="display: none;">
+              <div class="dropdown-list" id="searchResultsList"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="header-actions">
+          <!-- Theme Switcher -->
+          <div class="theme-toggle-wrapper">
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+              <i class="fa-solid fa-moon mode-icon-dark"></i>
+              <i class="fa-solid fa-sun mode-icon-light"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic Viewport -->
+      <main class="content-viewport" id="contentViewport">
+        
+        <!-- View 1: Home Page -->
+        <section class="view-section" id="view-home">
+          <div class="section-header home-header">
+            <h2 class="section-title"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</h2>
+          </div>
+
+          <div class="home-hero-banner">
+            <div class="hero-content">
+              <h3>هندسة النظم الذكية والحاسوب - جامعة الأقصى</h3>
+              <div class="quick-links-grid">
+                <button class="quick-link-btn" data-target-view="dashboard" data-level="level1">السنة الأولى</button>
+                <button class="quick-link-btn" data-target-view="dashboard" data-level="level2">السنة الثانية</button>
+                <button class="quick-link-btn" data-target-view="dashboard" data-level="level3">السنة الثالثة</button>
+                <button class="quick-link-btn" data-target-view="dashboard" data-level="level4">السنة الرابعة</button>
+                <button class="quick-link-btn" data-target-view="explorer">مستكشف الملفات</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-search-panel">
+            <div class="home-search-row">
+              <div class="home-search-input-wrapper">
+                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                <input type="text" id="homeSearchInput" placeholder="ابحث عن مساق بالاسم..." autocomplete="off">
+              </div>
+              <div class="home-sort-wrapper">
+                <select id="homeSortSelect">
+                  <option value="default">الفرز الافتراضي</option>
+                  <option value="name">الاسم</option>
+                  <option value="level">السنة</option>
+                </select>
+              </div>
+              <div class="home-filter-wrapper">
+                <select id="homeLevelFilter">
+                  <option value="all">كل السنوات</option>
+                  <option value="level1">السنة الأولى</option>
+                  <option value="level2">السنة الثانية</option>
+                  <option value="level3">السنة الثالثة</option>
+                  <option value="level4">السنة الرابعة</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="courses-search-results" id="homeCoursesResults">
+              <!-- Dynamically generated course cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- View 2: Dashboard (Study Plan Grid) -->
+        <section class="view-section" id="view-dashboard">
+          <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-circle-nodes"></i> الخطة الدراسية </h2>
+            <p class="section-description">اختر أي مساق نشط للدخول لمستكشف الملفات الخاص به، أو استعرض مساقات السنوات القادمة.</p>
+            <a href="https://drive.google.com/file/d/13GSIm3FkSSfF3WlbWPjolxOW_xTz0e_x/view?usp=drive_link" class="plan-item" data-target="dashboard">لتنزيل الخطة الدراسية ملف PDF من هنا</a>
+
+          </div>
+          
+          <div class="levels-container" id="levelsGrid">
+            <!-- Dynamically populated from JS -->
+          </div>
+        </section>
+
+        <!-- View 3: Course Explorer -->
+        <section class="view-section" id="view-explorer">
+          <!-- Breadcrumbs and Navigation Path -->
+          <div class="breadcrumbs-container">
+            <nav class="breadcrumbs" id="breadcrumbsNav">
+              <a href="#" class="breadcrumb-item" data-target="dashboard">الرئيسية</a>
+              <span class="breadcrumb-separator"><i class="fa-solid fa-chevron-left"></i></span>
+              <span class="breadcrumb-item active" id="currentPathNode">مستكشف المواد</span>
+            </nav>
+          </div>
+
+          <!-- Course Header Title -->
+          <div class="course-header-banner" id="courseHeaderBanner">
+            <div class="course-meta-info">
+              <span class="course-code" id="explorerCourseCode">PHYS1301</span>
+              <h2 class="course-title" id="explorerCourseName">فيزياء للهندسة</h2>
+            </div>
+            <div class="course-hours-badge">
+              <i class="fa-solid fa-clock"></i>
+              <span id="explorerCourseHours">3</span> ساعات معتمدة
+            </div>
+          </div>
+
+          <!-- Peer Advice Card ("نصيحة مجرّب") -->
+          <div class="peer-advice-card" id="peerAdviceCard">
+            <div class="advice-icon-wrapper">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="advice-content">
+              <h4 class="advice-title">نصيحة مجرّب 💡</h4>
+              <p class="advice-text" id="peerAdviceText">تحميل النصائح...</p>
+            </div>
+          </div>
+
+          <!-- Advanced Filters & Search Bar -->
+          <div class="explorer-toolbar" id="explorerToolbar">
+            <div class="search-box-wrapper">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" id="fileSearchInput" class="toolbar-search" placeholder="ابحث عن ملف باسمه...">
+              <button class="clear-search-btn" id="clearSearchBtn" style="display: none;">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            
+            <div class="filter-dropdown-wrapper">
+              <label for="courseSelectDropdown" class="sr-only">اختر المساق</label>
+              <select id="courseSelectDropdown" class="toolbar-select">
+                <!-- Dynamically loaded with active courses -->
+              </select>
+            </div>
+          </div>
+
+          <div class="explorer-course-browser" id="explorerCourseBrowser">
+            <div class="course-browser-header">
+              <h3>استعرض المساقات المتاحة</h3>
+              <p>يمكنك البحث عن المساق بالاسم، وتصفية النتائج حسب السنة، ثم الدخول إلى مستكشف الملفات الخاص بكل مساق.</p>
+            </div>
+            <div class="course-browser-list" id="explorerCourseList">
+              <!-- Dynamically populated list of courses in explorer -->
+            </div>
+          </div>
+
+          <!-- Categories Quick Filter Buttons -->
+          <div class="category-tabs" id="categoryTabs">
+            <button class="category-tab active" data-type="all">الكل</button>
+            <button class="category-tab" data-type="chapters"><i class="fa-solid fa-book-open"></i> الشباتر والملخصات</button>
+            <button class="category-tab" data-type="exams"><i class="fa-solid fa-file-signature"></i> نماذج اختبارات</button>
+            <button class="category-tab" data-type="homeworks" id="homeworkFilterTab"><i class="fa-solid fa-square-check"></i> حلول الواجبات والأسئلة</button>
+            <button class="category-tab" data-type="book"><i class="fa-solid fa-book"></i> كتاب المساق</button>
+          </div>
+
+          <!-- Demo Mode Alert Banner -->
+          <div class="demo-alert-banner" id="demoAlertBanner" style="display: none;">
+            <i class="fa-solid fa-triangle-exclamation banner-icon"></i>
+            <div class="banner-body">
+              <strong>وضع المعاينة التوضيحية نشط (Demo Mode)</strong>
+              <span>يتم عرض ملفات ومجلدات محاكاة تفاعلية للتجربة. لتشغيل ملفاتك الحقيقية، قم بإعداد مفتاح Google Drive API في ملف <code class="code-path">config.json</code>.</span>
+            </div>
+          </div>
+
+          <!-- Files and Folders Grid Explorer -->
+          <div class="files-explorer-wrapper" id="explorerFilesWrapper">
+            <div class="explorer-header-row">
+              <span class="col-name">الاسم</span>
+              <span class="col-size">الحجم</span>
+              <span class="col-type">النوع</span>
+              <span class="col-actions">التحكم</span>
+            </div>
+            <div class="explorer-items-list" id="explorerItemsList">
+              <!-- Dynamically populated from Google Drive API -->
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <p>جاري جلب الملفات من Google Drive...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- View 4: University Services Page -->
+        <section class="view-section" id="view-contacts">
+          <div class="section-header">
+            <h2 class="section-title"><i class="fa-solid fa-phone"></i> الخدمات الجامعية والأرقام المهمة</h2>
+            <p class="section-description">أرقام مهمة للتواصل المباشر مع الإدارات المختلفة بالجامعة</p>
+          </div>
+
+          <div class="contacts-grid" id="contactsGrid">
+            <!-- Contact Card 1 - الإدارة المالية -->
+            <div class="contact-card">
+              <div class="contact-header">
+                <div class="contact-avatar finance">
+                  <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div class="contact-meta">
+                  <h3 class="contact-name">الإدارة المالية</h3>
+                  <span class="contact-label">دفع الرسوم والمنح والإعفاءات</span>
+                </div>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 598 020 030</span>
+                  <span class="detail-desc">دفع الرسوم الدراسية</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 59 933 4932</span>
+                  <span class="detail-desc">المنح والإعفاءات</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Card 2 - القبول والتسجيل -->
+            <div class="contact-card">
+              <div class="contact-header">
+                <div class="contact-avatar admission">
+                  <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div class="contact-meta">
+                  <h3 class="contact-name">القبول والتسجيل</h3>
+                  <span class="contact-label">التسجيل والطلبة الجدد</span>
+                </div>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 599 198 348</span>
+                  <span class="detail-desc">أ. جهاد الزطمة - مدير القبول والتسجيل</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+970 599 459 974</span>
+                  <span class="detail-desc">أ. حسين أبو زرقة - نائب المدير</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+970 597 119 084</span>
+                  <span class="detail-desc">أ. نادية التعبان - التأهيل التربوي</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 59-958-1955</span>
+                  <span class="detail-desc">أ. عماد النجار - الخريجين والدراسات العليا</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 59 984 2996</span>
+                  <span class="detail-desc">أ. حسام صقر - الطلبة الجدد والخريجين</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+970 592 13 9246</span>
+                  <span class="detail-desc">د. حسن داوود - التجسير والتحويل من جامعات أخرى</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Card 3 - الدراسات العليا -->
+            <div class="contact-card">
+              <div class="contact-header">
+                <div class="contact-avatar grad">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <div class="contact-meta">
+                  <h3 class="contact-name">الدراسات العليا</h3>
+                  <span class="contact-label">برامج الماجستير والدبلوم</span>
+                </div>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+972 59-944-3815</span>
+                  <span class="detail-desc">أ. أحمد صالحة - مدير الدراسات العليا (واتس أب)</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+970 599 922 299</span>
+                  <span class="detail-desc">أ. عبد المجيد الحسنات - الدبلوم المتوسط</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Card 4 - الشؤون الثقافية والعلاقات العامة -->
+            <div class="contact-card">
+              <div class="contact-header">
+                <div class="contact-avatar pr">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div class="contact-meta">
+                  <h3 class="contact-name">الشؤون الثقافية والعلاقات العامة</h3>
+                  <span class="contact-label">الأخبار والفعاليات والعلاقات</span>
+                </div>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fa-solid fa-phone detail-icon"></i>
+                  <span class="detail-value">+970 599 488 845</span>
+                  <span class="detail-desc">د. محمد حمدان - المدير (واتس أب)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Signature bottom footer -->
+      <footer class="app-footer">
+        <p>Eng. Majd Eleyan</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Inline Live Preview Modal Container -->
+  <div class="modal-overlay" id="previewModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalFileName">اسم الملف.pdf</h3>
+        <div class="modal-actions">
+          <a href="#" target="_blank" class="modal-btn download-btn" id="modalDownloadBtn" title="تحميل الملف">
+            <i class="fa-solid fa-download"></i> <span>تحميل</span>
+          </a>
+          <button class="modal-btn close-btn" id="modalCloseBtn" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- iframe will load here -->
+        <div class="iframe-placeholder">
+          <div class="spinner"></div>
+          <p>جاري تحميل معاينة الملف...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
